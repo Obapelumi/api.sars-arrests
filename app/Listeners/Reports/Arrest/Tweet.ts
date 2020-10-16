@@ -1,0 +1,3 @@
+import { EventsList } from "@ioc:Adonis/Core/Event";
+
+export default class Tweet {}
