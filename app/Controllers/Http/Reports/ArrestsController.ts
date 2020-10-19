@@ -49,10 +49,15 @@ export default class ArrestsController {
     return response.json({ status: true, arrest });
   }
 
-  public async update({ params, request, response }: HttpContextContract) {
+  public async update({
+    auth,
+    params,
+    request,
+    response
+  }: HttpContextContract) {
     const data = await request.validate(UpdateArrestValidator);
 
-    const arrest = await new UpdateArrest().handle(params.id, data);
+    const arrest = await new UpdateArrest().handle(params.id, data, auth);
 
     return response.json({ status: true, arrest });
   }

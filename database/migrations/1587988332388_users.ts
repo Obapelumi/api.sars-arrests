@@ -10,10 +10,11 @@ export default class UsersSchema extends BaseSchema {
       table.string("name").nullable();
       table.string("email").nullable();
       table.string("phone").nullable();
-      table.string("twitter_handle").nullable();
+      table.string("avatar").nullable();
+      table.bigInteger("twitter_account").nullable();
       table.string("password", 180).notNullable();
       table.string("remember_me_token").nullable();
-      table.timestamps(true);
+      table.timestamps(true, true);
     });
   }
 

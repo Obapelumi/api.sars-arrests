@@ -14,7 +14,7 @@ export default class Arrest extends BaseModel {
   public id: number;
 
   @column()
-  public name: string;
+  public details: string;
 
   @column()
   public location: string;
@@ -23,7 +23,7 @@ export default class Arrest extends BaseModel {
   public officer: string;
 
   @column()
-  public twitterUser: string;
+  public twitterAccount: number;
 
   @column()
   public arrestStatusId: number;
@@ -50,6 +50,8 @@ export default class Arrest extends BaseModel {
    */
 
   public static statuses = scope((query, statuses: Array<string>) => {
+    if (statuses.length < 1) return query;
+    
     const statusQuery = Database.from("arrest_statuses")
       .whereIn("code", statuses)
       .select("id");

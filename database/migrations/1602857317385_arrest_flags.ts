@@ -1,25 +1,26 @@
 import BaseSchema from "@ioc:Adonis/Lucid/Schema";
 
-export default class TweepUsers extends BaseSchema {
-  protected tableName = "tweep_user";
+export default class ArrestFlags extends BaseSchema {
+  protected tableName = "arrest_flags";
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
       table
-        .integer("tweep_id")
+        .integer("arrest_id")
         .unsigned()
         .references("id")
-        .inTable("tweeps")
+        .inTable("arrests")
         .nullable()
         .onDelete("CASCADE");
       table
-        .integer("user_id")
+        .integer("comment_id")
         .unsigned()
         .references("id")
-        .inTable("users")
+        .inTable("comments")
         .nullable()
         .onDelete("CASCADE");
+      table.timestamps(true, true);
     });
   }
 

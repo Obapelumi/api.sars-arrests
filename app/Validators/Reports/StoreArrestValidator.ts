@@ -2,7 +2,7 @@ import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema } from "@ioc:Adonis/Core/Validator";
 
 const validation = {
-  name: schema.string(),
+  details: schema.string(),
   location: schema.string.optional(),
   officer: schema.string.optional(),
   handle: schema.string.optional()

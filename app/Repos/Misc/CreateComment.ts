@@ -2,7 +2,7 @@ import Comment from "App/Models/Misc/Comment";
 import { AuthContract } from "@ioc:Adonis/Addons/Auth";
 import User from "App/Models/People/User";
 
-export default class Create {
+export default class CreateComment {
   async handle(
     {
       title,
@@ -15,7 +15,7 @@ export default class Create {
   ) {
     const comment = await Comment.firstOrCreate(
       { title },
-      { createdBy: !auth?.user ? 0 : auth.user.id, text }
+      { createdBy: !auth?.user ? undefined : auth.user.id, text }
     );
 
     return comment;

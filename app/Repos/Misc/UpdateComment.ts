@@ -1,6 +1,6 @@
 import Comment from "App/Models/Misc/Comment";
 
-export default class Update {
+export default class UpdateComment {
   async handle(id, data: { title?: string; text?: string }) {
     var comment = await Comment.findOrFail(id);
 

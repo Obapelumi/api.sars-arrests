@@ -31,6 +31,16 @@ Route.group(() => {
   Route.post("oauth/login", "OAuthController.userLogin");
   Route.post("oauth/logout", "OAuthController.userLogout").middleware(["auth"]);
 
+  Route.get(
+    "oauth/twitter/request-token",
+    "TwitterAuthController.getRequestToken"
+  );
+
+  Route.post(
+    "oauth/twitter/access-token",
+    "TwitterAuthController.getAccessToken"
+  );
+
   Route.post("password/send-reset-code", "PasswordController.sendCode");
   Route.post("password/verify-and-reset", "PasswordController.verifyAndReset");
   Route.post("password/change", "PasswordController.change").middleware([
@@ -38,12 +48,13 @@ Route.group(() => {
   ]);
 }).namespace("App/Controllers/Http/Auth");
 
-Route.get("/", async () => {
-  return { message: "sorosoke werey" };
-});
-
 Route.resource("users", "People/UsersController").apiOnly();
 
 Route.resource("arrests", "Reports/ArrestsController")
   .apiOnly()
-  .middleware({ index: [], store: [], update: ["auth"], destroy: ["auth"] });
+  .middleware({
+    index: [],
+    store: ["auth"],
+    update: ["auth"],
+    destroy: ["auth"]
+  });

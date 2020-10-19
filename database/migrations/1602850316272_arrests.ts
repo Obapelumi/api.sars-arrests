@@ -6,8 +6,8 @@ export default class Arrests extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.string("name").nullable();
-      table.string("twitter_account").nullable();
+      table.text("details").nullable();
+      table.bigInteger("twitter_account").nullable();
       table.text("location").nullable();
       table.string("officer").nullable();
       table

@@ -5,9 +5,12 @@ import {
   beforeSave,
   BaseModel,
   hasMany,
-  HasMany
+  HasMany,
+  hasOne,
+  HasOne
 } from "@ioc:Adonis/Lucid/Orm";
 import Arrest from "../Reports/Arrest";
+import Tweep from "../Tweep";
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -17,13 +20,19 @@ export default class User extends BaseModel {
   public active: boolean;
 
   @column()
+  public name: string;
+
+  @column()
   public email: string;
 
   @column()
   public phone: string;
 
   @column()
-  public twitterHandle: string;
+  public avatar: string;
+
+  @column()
+  public twitterAccount: number;
 
   @column()
   public password: string;
@@ -49,4 +58,7 @@ export default class User extends BaseModel {
    */
   @hasMany(() => Arrest)
   public arrests: HasMany<typeof Arrest>;
+
+  @hasOne(() => Tweep)
+  public tweep: HasOne<typeof Tweep>;
 }

@@ -1,24 +1,15 @@
 import { DateTime } from "luxon";
 import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
 
-export default class Tweep extends BaseModel {
+export default class TwitterToken extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
   @column()
-  public twitterAccount: number;
+  public requestToken: string;
 
   @column()
-  public twitterHandle: string;
-
-  @column()
-  public token: string;
-
-  @column()
-  public tokenSecret: string;
-
-  @column()
-  public userId: number;
+  public requestSecret: string;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

@@ -1,16 +1,29 @@
+import Tweep from "App/Models/Tweep";
 import Axios, { AxiosInstance, AxiosResponse } from "axios";
-import { baseUrl, bearerToken } from "Config/twitter";
+import { apiKey, apiSecret, bearerToken, requestUrl } from "Config/twitter";
+import Twit from "twit";
 
 export default class Twitter {
   $axios: AxiosInstance;
+  $twit: any;
 
-  public constructor() {
+  public constructor(tweep?: Tweep) {
     this.$axios = Axios.create({
-      baseURL: baseUrl,
+      baseURL: requestUrl,
       headers: {
-        Authorization: `Bearer ${bearerToken}`
+        common: { Authorization: `Bearer ${bearerToken}` }
       }
     });
+
+    if (tweep) {
+      this.$twit = new Twit({
+        consumer_key: apiKey,
+        consumer_secret: apiSecret,
+        access_token: tweep.token,
+        access_token_secret: tweep.tokenSecret,
+        timeout_ms: 60 * 1000
+      });
+    }
   }
 
   public async getUserByHandle(
@@ -22,5 +35,13 @@ export default class Twitter {
     });
 
     return dataOnly ? response.data : response;
+  }
+
+  public async tweet(text) {
+    const response = await this.$twit.post("statuses/update", {
+      status: text
+    });
+
+    return response;
   }
 }

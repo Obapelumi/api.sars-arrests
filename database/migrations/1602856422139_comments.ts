@@ -6,7 +6,16 @@ export default class Comments extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.timestamps(true);
+      table.string("title").nullable();
+      table.text("text").nullable();
+      table
+        .integer("created_by")
+        .unsigned()
+        .references("id")
+        .inTable("users")
+        .nullable()
+        .onDelete("CASCADE");
+      table.timestamps(true, true);
     });
   }
 

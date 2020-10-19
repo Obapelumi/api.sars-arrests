@@ -3,7 +3,7 @@ import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
 import ArrestStatus from "./ArrestStatus";
 import Arrest from "./Arrest";
 
-export default class ConsultationLog extends BaseModel {
+export default class ArrestLog extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
@@ -14,10 +14,10 @@ export default class ConsultationLog extends BaseModel {
   public createdBy: number;
 
   @column()
-  public consultationId: number;
+  public arrestId: number;
 
   @column()
-  public consultationStatusId: number;
+  public arrestStatusId: number;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;

@@ -4,9 +4,7 @@ import { Exception } from "@poppinss/utils";
 
 export default class OAuthController {
   async index({ response }: CtxExtendContract) {
-    return response.json({
-      message: "Hi! Spread Peace :)"
-    });
+    return response.json({ message: "sorosoke werey" });
   }
 
   async userLogin({ auth, validator }: CtxExtendContract) {
