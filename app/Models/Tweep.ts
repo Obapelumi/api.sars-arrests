@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import User from "./People/User";
 
 export default class Tweep extends BaseModel {
   @column({ isPrimary: true })
@@ -25,4 +26,10 @@ export default class Tweep extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
+
+  /**
+   * Relationships
+   */
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>;
 }

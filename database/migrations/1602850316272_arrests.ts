@@ -8,6 +8,8 @@ export default class Arrests extends BaseSchema {
       table.increments("id");
       table.text("details").nullable();
       table.bigInteger("twitter_account").nullable();
+      table.bigInteger("tweet_id").nullable();
+      table.bigInteger("tweet_reply_id").nullable();
       table.text("location").nullable();
       table.string("officer").nullable();
       table

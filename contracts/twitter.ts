@@ -55,3 +55,71 @@ interface TwitterUser {
   notifications: string | null;
   translator_type: string | null;
 }
+
+interface Tweet {
+  created_at: string;
+  id: number;
+  id_str: string;
+  text: string;
+  source: string;
+  truncated: boolean;
+  in_reply_to_status_id: number | null;
+  in_reply_to_status_id_str: string | null;
+  in_reply_to_user_id: string | null;
+  in_reply_to_user_id_str: string | null;
+  in_reply_to_screen_name: string | null;
+  user: TwitterUser;
+  geo: string | null;
+  coordinates: string | null;
+  place: string | null;
+  contributors: string | null;
+  retweeted_status?: {
+    created_at: string;
+    id: number;
+    id_str: string;
+    text: string;
+    source: string;
+    truncated: boolean;
+    in_reply_to_status_id: number | null;
+    in_reply_to_status_id_str: string | null;
+    in_reply_to_user_id: number | null;
+    in_reply_to_user_id_str: number | null;
+    in_reply_to_screen_name: number | null;
+    user: TwitterUser;
+    geo: string | null;
+    coordinates: string | null;
+    place: string | null;
+    contributors: string | null;
+    is_quote_status: boolean;
+    quote_count: number;
+    reply_count: number;
+    retweet_count: number;
+    favorite_count: number;
+    entities: {
+      hashtags: string[];
+      urls: string[];
+      user_mentions: number[];
+      symbols: number[];
+    };
+    favorited: boolean;
+    retweeted: boolean;
+    filter_level: string;
+    lang: string;
+  };
+  is_quote_status: boolean;
+  quote_count: number;
+  reply_count: number;
+  retweet_count: number;
+  favorite_count: number;
+  entities: {
+    hashtags: any[];
+    urls: any[];
+    user_mentions: any[];
+    symbols: any[];
+  };
+  favorited: boolean;
+  retweeted: boolean;
+  filter_level: string;
+  lang: string;
+  timestamp_ms: string;
+}

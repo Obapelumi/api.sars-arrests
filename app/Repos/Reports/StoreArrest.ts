@@ -7,11 +7,13 @@ import StoreArrestLog from "./StoreArrestLog";
 import logger from "@ioc:Adonis/Core/Logger";
 import Tweep from "App/Models/Tweep";
 import { appHandle } from "Config/twitter";
+import User from "App/Models/People/User";
 
 export default class StoreArrest {
   async handle(
     { details, location, officer, handle }: typeof StoreArrestValidator.props,
-    auth: AuthContract
+    auth: AuthContract | { user: User },
+    sendTweet = true
   ) {
     var twitterAccount: number | undefined = undefined;
     if (handle) {
@@ -31,13 +33,15 @@ export default class StoreArrest {
 
     await new StoreArrestLog().handle(arrest, "Arrest reported", auth);
 
-    try {
-      const appTweep = await Tweep.findByOrFail("twitterHandle", appHandle);
-      await new Twitter(appTweep).tweet(
-        `#sarsArrest #endSARS ${details} at ${location}`
-      );
-    } catch (error) {
-      logger.error(error);
+    if (sendTweet) {
+      try {
+        const appTweep = await Tweep.findByOrFail("twitterHandle", appHandle);
+        await new Twitter(appTweep).tweet({
+          status: `#sarsArrest #endSARS ${details} at ${location}`
+        });
+      } catch (error) {
+        logger.error(error);
+      }
     }
 
     return arrest;
