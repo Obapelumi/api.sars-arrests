@@ -35,6 +35,9 @@ export default class Arrest extends BaseModel {
   public arrestStatusId: number;
 
   @column()
+  public googlePlaceId: string;
+
+  @column()
   public createdBy: number;
 
   @column.dateTime({ autoCreate: true })

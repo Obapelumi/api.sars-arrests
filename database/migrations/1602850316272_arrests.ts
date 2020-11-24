@@ -11,6 +11,7 @@ export default class Arrests extends BaseSchema {
       table.bigInteger("tweet_id").nullable();
       table.bigInteger("tweet_reply_id").nullable();
       table.text("location").nullable();
+      table.string("google_place_id").nullable();
       table.string("officer").nullable();
       table
         .integer("arrest_status_id")

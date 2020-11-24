@@ -5,7 +5,8 @@ const validation = {
   details: schema.string(),
   location: schema.string.optional(),
   officer: schema.string.optional(),
-  handle: schema.string.optional()
+  handle: schema.string.optional(),
+  googlePlaceId: schema.string.optional()
 };
 
 export default class StoreArrestValidator {

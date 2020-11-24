@@ -11,7 +11,13 @@ import User from "App/Models/People/User";
 
 export default class StoreArrest {
   async handle(
-    { details, location, officer, handle }: typeof StoreArrestValidator.props,
+    {
+      details,
+      location,
+      officer,
+      handle,
+      googlePlaceId
+    }: typeof StoreArrestValidator.props,
     auth: AuthContract | { user: User },
     sendTweet = true
   ) {
@@ -27,6 +33,7 @@ export default class StoreArrest {
       location,
       officer,
       twitterAccount,
+      googlePlaceId,
       arrestStatusId: arrestStatus.id,
       createdBy: auth?.user?.id
     });
