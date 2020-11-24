@@ -5,7 +5,9 @@
   "scripts": {
     "build": "node ace build",
     "dev": "node ace serve --watch",
-    "seed": "node ace db:seed"
+    "start": "node build/server.js",
+    "seed": "node ace db:seed",
+    "update-env": "gsutil -m cp -r tmp/deployment-files gs://sars-arrests.appspot.com"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^2.1.5",

@@ -1,0 +1,36 @@
+steps:
+  # Install node.js dependencies
+  - name: node:12.18.2
+    entrypoint: npm
+    args: ["install"]
+  # Fetch environment variables from storage
+  - name: gcr.io/cloud-builders/gsutil
+    args:
+      [
+        "cp",
+        "gs://sars-arrests.appspot.com/deployment-files/${_ENV}.env",
+        ".env",
+      ]
+  # Fetch app.yaml from storage
+  - name: gcr.io/cloud-builders/gsutil
+    args:
+      [
+        "cp",
+        "gs://sars-arrests.appspot.com/deployment-files/${_ENV}.yaml",
+        "app.yaml",
+      ]
+  # Run build script
+  - name: node:12.18.2
+    entrypoint: npm
+    args: ["run", "build"]
+  # Run Migrations
+  - name: node:12.18.2
+    entrypoint: node
+    args: ["ace", "migration:run", "--force"]
+  # Run Seeders
+  - name: node:12.18.2
+    entrypoint: node
+    args: ["ace", "db:seed"]
+  # Deploy application
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
