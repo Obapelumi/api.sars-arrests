@@ -12,7 +12,7 @@ export default class UsersSchema extends BaseSchema {
       table.string("phone").nullable();
       table.string("avatar").nullable();
       table.bigInteger("twitter_account").nullable();
-      table.string("password", 180).notNullable();
+      table.string("password", 180).nullable();
       table.string("remember_me_token").nullable();
       table.timestamps(true, true);
     });
