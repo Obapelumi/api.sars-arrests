@@ -58,7 +58,8 @@ export default class Stream {
         details: this.parseTweetText(tweet.text),
         location: undefined,
         officer: undefined,
-        handle: undefined
+        handle: undefined,
+        googlePlaceId: undefined
       },
       { user },
       false
