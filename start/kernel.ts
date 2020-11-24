@@ -10,8 +10,8 @@
 */
 
 import Server from "@ioc:Adonis/Core/Server";
-import Stream from "App/Services/Twitter/Stream";
-import Twitter from "App/Services/Twitter/Twitter";
+// import Stream from "App/Services/Twitter/Stream";
+// import Twitter from "App/Services/Twitter/Twitter";
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +48,4 @@ Server.middleware.registerNamed({
 });
 
 // Stream Twitter API for tweets
-new Twitter().stream("SARSArrests", (tweet) => new Stream().handle(tweet));
+// new Twitter().stream("SARSArrests", (tweet) => new Stream().handle(tweet));
